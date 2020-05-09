@@ -187,6 +187,10 @@ class GoogLeNet(nn.Module):
         x = self.maxpool4(x)
         x = self.inception5a(x)
         x = self.inception5b(x)
+        x = self.avgpool(x)
+        # N x 1024 x 1 x 1
+        x = torch.flatten(x, 1)
+        # N x 1024
         return x
 
     def forward(self, x):
